@@ -1,0 +1,47 @@
+services:
+    server_daily_trends_api:
+        build:
+            context: .
+            dockerfile: ./docker/Dockerfile
+            args:
+                - UID=$UID
+                - UNAME=$UNAME
+        container_name: server_daily_trends_api
+        ports:
+            - "8027:80"
+        volumes:
+            - ~/.ssh:/home/$UNAME/.ssh
+            - ../:/var/www
+        depends_on:
+            - mongodb_daily_trends_api
+    mongodb_daily_trends_api:
+        image: mongo:latest
+        container_name: mongodb_daily_trends_api
+        restart: unless-stopped
+        ports:
+            - "27017:27017"
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: password
+            MONGO_INITDB_DATABASE: daily_trends_api
+        volumes:
+            - mongodata_daily_trends_api:/data/db
+    mongo_express_daily_trends_api:
+        image: mongo-express:latest
+        container_name: mongo_express_daily_trends_api
+        restart: unless-stopped
+        ports:
+            - "8081:8081"
+        environment:
+            ME_CONFIG_MONGODB_ADMINUSERNAME: root
+            ME_CONFIG_MONGODB_ADMINPASSWORD: password
+            ME_CONFIG_MONGODB_SERVER: mongodb_daily_trends_api
+        depends_on:
+            - mongodb_daily_trends_api
+networks:
+    default:
+        name: avantio
+        external: true
+volumes:
+    mongodata_daily_trends_api:
+        driver: local
