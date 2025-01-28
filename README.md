@@ -103,6 +103,14 @@ realicen vía API.
 Se lista igualmente ya que nuestra Factoría no discrimina si es un Newspaper por Scrape o añadido mediante API.
 Por defecto, hemos agregado un límite de 15 noticias en Portada.
 
+## Test
+
+Con PHPUnit, se han realizado Test Unitarios del _"Core"_ del Sistema, es decir, los Feeds:
+
+![tests_list](docs/screenshots/tests_list.png)
+
+![tests](docs/screenshots/tests.png)
+
 ## Developer team backlog
 
 - Autorizar a usuarios para el uso de la API
