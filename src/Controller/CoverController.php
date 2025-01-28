@@ -17,10 +17,8 @@ final class CoverController extends AbstractController
     #[Route('/', name: 'app_cover')]
     public function index(): Response
     {
-        // TODO: Create custom error page or show zero Feeds if there is an error?
-
         try {
-            $trendingFeeds = $this->feedsHandler->getTrendingFeeds(['el_pais', 'el_mundo']);
+            $trendingFeeds = $this->feedsHandler->getTrendingFeeds(['el_pais', 'el_mundo', 'avantio']);
         } catch (Throwable) {
             $trendingFeeds = [];
         }

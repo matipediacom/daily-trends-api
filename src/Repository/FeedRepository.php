@@ -8,11 +8,9 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\MongoDBException;
 use Throwable;
 
-readonly class FeedRepository
+class FeedRepository
 {
-    public function __construct(
-        private DocumentManager $documentManager
-    )
+    public function __construct(private readonly DocumentManager $documentManager)
     {
     }
 

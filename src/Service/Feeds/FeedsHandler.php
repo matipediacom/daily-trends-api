@@ -9,15 +9,15 @@ use App\Service\Newspaper\NewspaperFactory;
 use Doctrine\ODM\MongoDB\MongoDBException;
 use Throwable;
 
-readonly class FeedsHandler
+class FeedsHandler
 {
     private const int REQUIRED_TODAY_FEEDS = 10;
 
     public function __construct(
-        private FeedRepository   $feedRepository,
-        private NewspaperFactory $newspaperFactory,
-        private FeedsImporter    $feedsImporter,
-        private DailyHelper      $dailyHelper
+        private readonly FeedRepository   $feedRepository,
+        private readonly NewspaperFactory $newspaperFactory,
+        private readonly FeedsImporter    $feedsImporter,
+        private readonly DailyHelper      $dailyHelper
     )
     {
     }

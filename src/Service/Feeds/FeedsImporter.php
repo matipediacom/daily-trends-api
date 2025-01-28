@@ -10,11 +10,11 @@ use App\Service\Newspaper\NewspaperInterface;
 use Doctrine\ODM\MongoDB\MongoDBException;
 use Throwable;
 
-readonly class FeedsImporter
+class FeedsImporter
 {
     private const int REQUIRED_IMPORT_FEEDS = 5;
 
-    public function __construct(private FeedRepository $feedRepository, private DailyHelper $dailyHelper)
+    public function __construct(private readonly FeedRepository $feedRepository, private readonly DailyHelper $dailyHelper)
     {
     }
 

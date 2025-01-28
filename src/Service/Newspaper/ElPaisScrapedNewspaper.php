@@ -6,16 +6,16 @@ use App\Document\Feed;
 use DateTime;
 use Throwable;
 
-class ElMundoNewspaper extends AbstractNewspaper
+class ElPaisScrapedNewspaper extends AbstractScrapedNewspaper
 {
-    const string NEWSPAPER_KEY = 'el_mundo';
-    private const string NEWSPAPER_NAME = 'El Mundo';
+    const string NEWSPAPER_KEY = 'el_pais';
+    private const string NEWSPAPER_NAME = 'El País';
 
     public function getLastFeeds(): array
     {
         try {
             return $this->getCrawler()->reduce(function ($node) {
-                $title = $node->filter('.ue-c-cover-content__headline')->text('');
+                $title = $node->filter('.c_h')->text('');
 
                 if (empty($title)) {
                     return false;
@@ -24,7 +24,7 @@ class ElMundoNewspaper extends AbstractNewspaper
                 return true;
             })->each(function ($node) {
                 return new Feed()
-                    ->setTitle($node->filter('.ue-c-cover-content__headline')->text(''))
+                    ->setTitle($node->filter('.c_h')->text(''))
                     ->setNewspaperName(self::NEWSPAPER_NAME)
                     ->setPublishedAt(new DateTime)
                     ->setNewspaperKey(self::NEWSPAPER_KEY);
@@ -42,11 +42,11 @@ class ElMundoNewspaper extends AbstractNewspaper
 
     protected function getLastNewsUri(): string
     {
-        return 'https://www.elmundo.es/ultimas-noticias.html';
+        return 'https://elpais.com/ultimas-noticias/';
     }
 
     protected function getCssSelector(): string
     {
-        return '.ue-c-cover-content__main';
+        return '.c-d';
     }
 }

@@ -5,13 +5,14 @@ namespace App\Service\Newspaper;
 class NewspaperFactory
 {
     const array AVAILABLE_NEWSPAPER_KEYS = [
-        ElMundoNewspaper::NEWSPAPER_KEY,
-        ElPaisNewspaper::NEWSPAPER_KEY
+        ElMundoScrapedNewspaper::NEWSPAPER_KEY,
+        ElPaisScrapedNewspaper::NEWSPAPER_KEY
     ];
 
     public function __construct(
-        private readonly ElMundoNewspaper $elMundoNewspaper,
-        private readonly ElPaisNewspaper  $elPaisNewspaper
+        private readonly ElMundoScrapedNewspaper $elMundoNewspaper,
+        private readonly ElPaisScrapedNewspaper  $elPaisNewspaper,
+        private readonly AvantioNewspaper        $avantioNewspaper
     )
     {
     }
@@ -19,8 +20,9 @@ class NewspaperFactory
     public function create(string $newspaperKey): NewspaperInterface
     {
         return match (true) {
-            ElMundoNewspaper::NEWSPAPER_KEY === $newspaperKey => $this->elMundoNewspaper,
-            ElPaisNewspaper::NEWSPAPER_KEY === $newspaperKey => $this->elPaisNewspaper,
+            ElMundoScrapedNewspaper::NEWSPAPER_KEY === $newspaperKey => $this->elMundoNewspaper,
+            ElPaisScrapedNewspaper::NEWSPAPER_KEY === $newspaperKey => $this->elPaisNewspaper,
+            AvantioNewspaper::NEWSPAPER_KEY === $newspaperKey => $this->avantioNewspaper,
             default => "Unrecognized newspaper key",
         };
     }

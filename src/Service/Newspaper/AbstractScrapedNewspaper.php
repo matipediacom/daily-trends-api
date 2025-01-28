@@ -5,7 +5,7 @@ namespace App\Service\Newspaper;
 use App\Service\WebScraper;
 use Symfony\Component\DomCrawler\Crawler;
 
-abstract class AbstractNewspaper implements NewspaperInterface
+abstract class AbstractScrapedNewspaper implements NewspaperInterface
 {
     public function __construct(protected WebScraper $webScraper)
     {
