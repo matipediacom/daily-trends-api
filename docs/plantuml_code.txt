@@ -1,0 +1,65 @@
+@startuml
+class CoverController {
+    +index()
+}
+
+class FeedsHandler {
+    +getTrendingFeeds()
+}
+
+class FeedsImporter {
+    +import()
+}
+
+class FeedRepository {
+    +save()
+    +findNewspapersFeedsInRange()
+}
+
+class Feed {
+    +title
+    +newspaperKey
+    +publishedAt
+}
+
+class NewspaperFactory {
+    +create()
+}
+
+interface NewspaperInterface {
+    +getLastFeeds()
+    +getNewspaperKey()
+}
+
+class ElPaisScrapedNewspaper {
+    +getLastFeeds()
+}
+
+class AvantioNewspaper {
+    +getLastFeeds()
+}
+
+class DailyHelper {
+    +today()
+    +tomorrow()
+}
+
+class WebScraper {
+    +scrape()
+}
+
+CoverController --> FeedsHandler : uses
+FeedsHandler --> FeedRepository : calls
+FeedsHandler --> NewspaperFactory : creates
+FeedsHandler --> FeedsImporter : calls
+FeedsImporter --> FeedRepository : calls
+FeedsImporter --> NewspaperInterface : calls
+FeedsImporter --> Feed : creates
+NewspaperFactory --> NewspaperInterface : creates
+NewspaperInterface <|-- ElPaisScrapedNewspaper : implements
+NewspaperInterface <|-- AvantioNewspaper : implements
+AvantioNewspaper --> FeedRepository : calls
+WebScraper --> ElPaisScrapedNewspaper : used by
+FeedsHandler --> DailyHelper : uses
+FeedsImporter --> DailyHelper : uses
+@enduml
