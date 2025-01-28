@@ -26,9 +26,12 @@ readonly class FeedRepository
         $this->documentManager->flush();
     }
 
-    public function findFeedsInRange(DateTime $start, DateTime $end, ?int $limit = null): array
+    public function findNewspapersFeedsInRange(array $newspaperKeys, DateTime $start, DateTime $end, ?int $limit = null): array
     {
         return $this->documentManager->getRepository(Feed::class)->findBy([
+            'newspaperKey' => [
+                '$in' => $newspaperKeys,
+            ],
             'publishedAt' => [
                 '$gte' => $start,
                 '$lt' => $end,

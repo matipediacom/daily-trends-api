@@ -20,9 +20,8 @@ final class CoverController extends AbstractController
         // TODO: Create custom error page or show zero Feeds if there is an error?
 
         try {
-            $trendingFeeds = $this->feedsHandler->getTrendingFeeds(['el_mundo']);
+            $trendingFeeds = $this->feedsHandler->getTrendingFeeds(['el_pais', 'el_mundo']);
         } catch (Throwable) {
-            // TODO: Sentry
             $trendingFeeds = [];
         }
 

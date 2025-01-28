@@ -12,7 +12,7 @@ use Throwable;
 
 readonly class FeedsImporter
 {
-    const int REQUIRED_TODAY_FEEDS = 5;
+    private const int REQUIRED_IMPORT_FEEDS = 5;
 
     public function __construct(private FeedRepository $feedRepository, private DailyHelper $dailyHelper)
     {
@@ -43,6 +43,6 @@ readonly class FeedsImporter
         $todayFeeds = $this->feedRepository
             ->findNewspaperFeedsInRange($newspaperKey, $this->dailyHelper->today(), $this->dailyHelper->tomorrow());
 
-        return count($todayFeeds) >= self::REQUIRED_TODAY_FEEDS;
+        return count($todayFeeds) >= self::REQUIRED_IMPORT_FEEDS;
     }
 }

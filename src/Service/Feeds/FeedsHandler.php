@@ -11,6 +11,8 @@ use Throwable;
 
 readonly class FeedsHandler
 {
+    private const int REQUIRED_TODAY_FEEDS = 10;
+
     public function __construct(
         private FeedRepository   $feedRepository,
         private NewspaperFactory $newspaperFactory,
@@ -27,7 +29,6 @@ readonly class FeedsHandler
      */
     public function getTrendingFeeds(array $newspaperKeys): array
     {
-        $dailyFeeds = [];
         foreach ($newspaperKeys as $newspaperKey) {
             if (!in_array($newspaperKey, NewspaperFactory::AVAILABLE_NEWSPAPER_KEYS)) {
                 continue;
@@ -36,17 +37,13 @@ readonly class FeedsHandler
             $newspaper = $this->newspaperFactory->create($newspaperKey);
 
             $this->feedsImporter->import($newspaper);
-
-            $dailyFeeds = array_merge(
-                $dailyFeeds,
-                $this->feedRepository->findFeedsInRange(
-                    start: $this->dailyHelper->today(),
-                    end: $this->dailyHelper->tomorrow(),
-                    limit: FeedsImporter::REQUIRED_TODAY_FEEDS,
-                ));
         }
 
-        return $dailyFeeds;
-
+        return $this->feedRepository->findNewspapersFeedsInRange(
+            newspaperKeys: $newspaperKeys,
+            start: $this->dailyHelper->today(),
+            end: $this->dailyHelper->tomorrow(),
+            limit: self::REQUIRED_TODAY_FEEDS,
+        );
     }
 }
