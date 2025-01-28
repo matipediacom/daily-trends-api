@@ -85,7 +85,7 @@ lista directamente de base de datos (sin scraping) las noticias agregadas por el
 ## API
 
 Con el fin de aportar valor a la API con una documentación y validación para hacer CRUD del Feed (Document - _Modelo_),
-se ha optado por API Plaform debido a su compatibilidad con Symfony/Doctrine (ODM).
+se ha optado por API Platform debido a su compatibilidad con Symfony/Doctrine (ODM).
 
 ![api](docs/screenshots/api.png)
 
@@ -109,4 +109,4 @@ Por defecto, hemos agregado un límite de 15 noticias en Portada.
 - Agregar un validador para el importador de noticias
 - Añadir Test de Integración
 - Añadir paginación y filtro de noticias
-- **Importante**: añadir variables de entorno en docker en caso de despliegue.
+- **Importante**: añadir variables de entorno en Docker en caso de despliegue.
