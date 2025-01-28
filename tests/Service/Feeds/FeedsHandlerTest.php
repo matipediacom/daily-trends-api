@@ -95,7 +95,7 @@ class FeedsHandlerTest extends TestCase
                 $this->equalTo(['el_mundo', 'el_pais', 'invalid_key']),
                 $this->equalTo($today),
                 $this->equalTo($tomorrow),
-                $this->equalTo(10)
+                $this->equalTo(15)
             )
             ->willReturn($expectedFeeds);
 
@@ -138,7 +138,7 @@ class FeedsHandlerTest extends TestCase
                 $this->equalTo(['invalid_key1', 'invalid_key2']),
                 $this->equalTo($today),
                 $this->equalTo($tomorrow),
-                $this->equalTo(10)
+                $this->equalTo(15)
             )
             ->willReturn($expectedFeeds);
 
@@ -201,7 +201,7 @@ class FeedsHandlerTest extends TestCase
                 $this->equalTo(['el_mundo', 'invalid_key1', 'el_pais', 'invalid_key2']),
                 $this->equalTo($today),
                 $this->equalTo($tomorrow),
-                $this->equalTo(10)
+                $this->equalTo(15)
             )
             ->willReturn($expectedFeeds);
 
@@ -283,7 +283,7 @@ class FeedsHandlerTest extends TestCase
                 $this->equalTo(['el_mundo', 'el_pais']),
                 $this->equalTo($today),
                 $this->equalTo($tomorrow),
-                $this->equalTo(10)
+                $this->equalTo(15)
             )
             ->willThrowException(new MongoDBException('Database error'));
 
@@ -324,7 +324,7 @@ class FeedsHandlerTest extends TestCase
                 $this->equalTo([]),
                 $this->equalTo($today),
                 $this->equalTo($tomorrow),
-                $this->equalTo(10)
+                $this->equalTo(15)
             )
             ->willReturn($expectedFeeds);
 
