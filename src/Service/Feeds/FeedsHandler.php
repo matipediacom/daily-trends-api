@@ -11,7 +11,7 @@ use Throwable;
 
 class FeedsHandler
 {
-    private const int REQUIRED_TODAY_FEEDS = 10;
+    private const int REQUIRED_TODAY_FEEDS = 15;
 
     public function __construct(
         private readonly FeedRepository   $feedRepository,
