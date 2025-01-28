@@ -54,3 +54,5 @@ Para compilar los estilos se debe ejecutar:
 ```
 npm run build
 ```
+## Diagrama
+![plantuml](docs/screenshots/plantuml.png)
