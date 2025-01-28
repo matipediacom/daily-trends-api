@@ -41,3 +41,16 @@ Se ha configurado **NGINX** para trabajar con el dominio local http://avantio.te
 
 ### Mongo Express
 Simplemente cambia el puerto (8081) y accede a http://avantio.test:8081/.
+
+## Portada
+Los últimos _Feeds_ en portada se renderizan con el motor de plantillas Twig y para darle un estilo más atractivo se ha configurado Tailwindcss.
+
+Instalar las dependencias:
+```
+npm install
+```
+
+Para compilar los estilos se debe ejecutar:
+```
+npm run build
+```
