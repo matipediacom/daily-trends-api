@@ -3,6 +3,7 @@
 namespace App\Service\Feeds;
 
 use App\Exception\FeedsImporterException;
+use App\Exception\NewspaperException;
 use App\Repository\FeedRepository;
 use App\Service\DailyHelper;
 use App\Service\Newspaper\NewspaperFactory;
@@ -25,6 +26,7 @@ class FeedsHandler
     /**
      * @throws FeedsImporterException
      * @throws Throwable
+     * @throws NewspaperException
      * @throws MongoDBException
      */
     public function getTrendingFeeds(array $newspaperKeys): array

@@ -2,6 +2,8 @@
 
 namespace App\Service\Newspaper;
 
+use App\Exception\NewspaperException;
+
 class NewspaperFactory
 {
     const array AVAILABLE_NEWSPAPER_KEYS = [
@@ -17,13 +19,16 @@ class NewspaperFactory
     {
     }
 
+    /**
+     * @throws NewspaperException
+     */
     public function create(string $newspaperKey): NewspaperInterface
     {
         return match (true) {
             ElMundoScrapedNewspaper::NEWSPAPER_KEY === $newspaperKey => $this->elMundoNewspaper,
             ElPaisScrapedNewspaper::NEWSPAPER_KEY === $newspaperKey => $this->elPaisNewspaper,
             AvantioNewspaper::NEWSPAPER_KEY === $newspaperKey => $this->avantioNewspaper,
-            default => "Unrecognized newspaper key",
+            default => throw new NewspaperException("Unrecognized newspaper key"),
         };
     }
 }
